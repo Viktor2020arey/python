@@ -28,7 +28,7 @@ PLAYER_IMAGES = os.listdir(IMAGE_PATH)
 
 player = pygame.image.load('player.png').convert_alpha()
 player_size = player.get_size()
-player_rect = pygame.Rect(0, HEIGHT/2 - player_size[0]/2, *player_size)
+player_rect = pygame.Rect(0, HEIGHT/2 - 70, *player_size)
 
 player_move_down = [0, 4]
 player_move_up = [0, -4]
@@ -38,27 +38,27 @@ player_move_left = [-4, 0]
 def create_enemy():
     enemy = pygame.image.load('enemy.png').convert_alpha()
     enemy_size = enemy.get_size()
-    enemy_rect = pygame.Rect(WIDTH, random.randint(0 + enemy_size[1], HEIGHT - enemy_size[1]), *enemy_size)
+    enemy_rect = pygame.Rect(WIDTH, random.randint(0 + 20, HEIGHT - 40), *enemy_size)
     enemy_move = [random.randint(-8, -4), 0]
     return [enemy, enemy_rect, enemy_move]
-
-CREATE_ENEMY = pygame.USEREVENT +1
-pygame.time.set_timer(CREATE_ENEMY, 1500)
-enemies = []
 
 def create_bonus():
     bonus = pygame.image.load('bonus.png').convert_alpha()
     bonus_size = bonus.get_size()
-    bonus_rect = pygame.Rect(random.randint(0 + bonus_size[0], WIDTH - bonus_size[0]), 0, *bonus_size)
-    bonus_move = [0, random.randint(3, 5)]
+    bonus_rect = pygame.Rect(random.randint(0 + 20, WIDTH - 40), 0, *bonus_size)
+    bonus_move = [0, random.randint(3, 6)]
     return [bonus, bonus_rect, bonus_move]
 
+CREATE_ENEMY = pygame.USEREVENT +1
+pygame.time.set_timer(CREATE_ENEMY, 1300)
+enemies = []
+
 CREATE_BONUS = pygame.USEREVENT + 2
-pygame.time.set_timer(CREATE_BONUS, 3200)
+pygame.time.set_timer(CREATE_BONUS, 2800)
 bonuses = []
 
 CHANGE_IMAGE = pygame.USEREVENT + 3
-pygame.time.set_timer(CHANGE_IMAGE, 250)
+pygame.time.set_timer(CHANGE_IMAGE, 320)
 
 score = 0
 image_index = 0
